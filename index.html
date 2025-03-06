@@ -78,7 +78,7 @@
 </head>
 <body>
   <h1>Idle Jumpscare Tycoon</h1>
-  <div id="souls">Souls: 0</div>
+  <div id="souls">Souls: 10</div>
   <button id="jumpscareButton">Trigger Jumpscare</button>
   <div id="buildings">
     <!-- Haunted House -->
@@ -125,7 +125,8 @@
 
   <script>
     // Game state variables
-    let souls = 0;
+    // New players start with 10 souls.
+    let souls = 10;
     const buildings = {
       hauntedHouse: {
         name: "Haunted House",
@@ -178,7 +179,7 @@
       const saveData = localStorage.getItem('idleJumpscareTycoonSave');
       if (saveData) {
         const data = JSON.parse(saveData);
-        souls = data.souls || 0;
+        souls = data.souls || 10;
         for (let key in data.buildings) {
           if (buildings.hasOwnProperty(key)) {
             buildings[key].cost = data.buildings[key].cost;
