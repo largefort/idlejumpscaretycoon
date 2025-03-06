@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport meta tag for responsive design on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idle Jumpscare Tycoon - Mobile</title>
+  <style>
+    /* Mobile-first styles */
+    body {
+      background-color: #111;
+      color: #eee;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      margin: 0;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      font-size: 2.2em;
+      margin: 10px 0;
+    }
+    #souls {
+      font-size: 1.8em;
+      margin: 10px 0;
+    }
+    #jumpscareButton {
+      background-color: #900;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1.2em;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 90%;
+      max-width: 400px;
+      margin: 10px auto;
+    }
+    #buildings {
+      width: 100%;
+      max-width: 400px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .building {
+      border: 1px solid #555;
+      padding: 10px;
+      background-color: #222;
+      border-radius: 5px;
+    }
+    .building h3 {
+      margin: 5px 0;
+      font-size: 1.4em;
+    }
+    .building p {
+      margin: 3px 0;
+      font-size: 1em;
+    }
+    .buy {
+      background-color: #444;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
+      margin-top: 5px;
+    }
+    .buy:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>Idle Jumpscare Tycoon</h1>
+  <div id="souls">Souls: 0</div>
+  <button id="jumpscareButton">Trigger Jumpscare</button>
+  <div id="buildings">
+    <!-- Haunted House -->
+    <div class="building" data-id="hauntedHouse">
+      <h3>Haunted House</h3>
+      <p>Cost: <span class="cost">10</span> Souls</p>
+      <p>Owned: <span class="owned">0</span></p>
+      <p>Production: <span class="production">1</span> Soul/s</p>
+      <button class="buy">Buy</button>
+    </div>
+    <!-- Cursed Mansion -->
+    <div class="building" data-id="cursedMansion">
+      <h3>Cursed Mansion</h3>
+      <p>Cost: <span class="cost">100</span> Souls</p>
+      <p>Owned: <span class="owned">0</span></p>
+      <p>Production: <span class="production">10</span> Soul/s</p>
+      <button class="buy">Buy</button>
+    </div>
+    <!-- Graveyard -->
+    <div class="building" data-id="graveyard">
+      <h3>Graveyard</h3>
+      <p>Cost: <span class="cost">1000</span> Souls</p>
+      <p>Owned: <span class="owned">0</span></p>
+      <p>Production: <span class="production">50</span> Soul/s</p>
+      <button class="buy">Buy</button>
+    </div>
+    <!-- Abandoned Asylum -->
+    <div class="building" data-id="abandonedAsylum">
+      <h3>Abandoned Asylum</h3>
+      <p>Cost: <span class="cost">5000</span> Souls</p>
+      <p>Owned: <span class="owned">0</span></p>
+      <p>Production: <span class="production">200</span> Soul/s</p>
+      <button class="buy">Buy</button>
+    </div>
+    <!-- Demonic Tower -->
+    <div class="building" data-id="demonicTower">
+      <h3>Demonic Tower</h3>
+      <p>Cost: <span class="cost">20000</span> Souls</p>
+      <p>Owned: <span class="owned">0</span></p>
+      <p>Production: <span class="production">1000</span> Soul/s</p>
+      <button class="buy">Buy</button>
+    </div>
+  </div>
+
+  <script>
+    // Game state variables
+    let souls = 0;
+    const buildings = {
+      hauntedHouse: {
+        name: "Haunted House",
+        cost: 10,
+        production: 1,
+        owned: 0,
+        costMultiplier: 1.15
+      },
+      cursedMansion: {
+        name: "Cursed Mansion",
+        cost: 100,
+        production: 10,
+        owned: 0,
+        costMultiplier: 1.15
+      },
+      graveyard: {
+        name: "Graveyard",
+        cost: 1000,
+        production: 50,
+        owned: 0,
+        costMultiplier: 1.15
+      },
+      abandonedAsylum: {
+        name: "Abandoned Asylum",
+        cost: 5000,
+        production: 200,
+        owned: 0,
+        costMultiplier: 1.15
+      },
+      demonicTower: {
+        name: "Demonic Tower",
+        cost: 20000,
+        production: 1000,
+        owned: 0,
+        costMultiplier: 1.15
+      }
+    };
+
+    // Save game state to localStorage
+    function saveGame() {
+      const saveData = {
+        souls: souls,
+        buildings: buildings
+      };
+      localStorage.setItem('idleJumpscareTycoonSave', JSON.stringify(saveData));
+    }
+
+    // Load game state from localStorage
+    function loadGame() {
+      const saveData = localStorage.getItem('idleJumpscareTycoonSave');
+      if (saveData) {
+        const data = JSON.parse(saveData);
+        souls = data.souls || 0;
+        for (let key in data.buildings) {
+          if (buildings.hasOwnProperty(key)) {
+            buildings[key].cost = data.buildings[key].cost;
+            buildings[key].production = data.buildings[key].production;
+            buildings[key].owned = data.buildings[key].owned;
+            buildings[key].costMultiplier = data.buildings[key].costMultiplier;
+          }
+        }
+      }
+    }
+
+    // Update the display for souls and building stats
+    function updateDisplay() {
+      document.getElementById("souls").innerText = "Souls: " + Math.floor(souls);
+      for (let key in buildings) {
+        const buildingElem = document.querySelector(`.building[data-id="${key}"]`);
+        if (buildingElem) {
+          buildingElem.querySelector(".cost").innerText = Math.floor(buildings[key].cost);
+          buildingElem.querySelector(".owned").innerText = buildings[key].owned;
+        }
+      }
+    }
+
+    // Purchase a building if enough souls are available
+    function purchaseBuilding(id) {
+      const building = buildings[id];
+      if (souls >= building.cost) {
+        souls -= building.cost;
+        building.owned += 1;
+        // Increase cost for subsequent purchases
+        building.cost *= building.costMultiplier;
+        updateDisplay();
+      } else {
+        alert("Not enough souls to buy " + building.name + "!");
+      }
+    }
+
+    // Attach event listeners for each Buy button
+    document.querySelectorAll(".buy").forEach(button => {
+      button.addEventListener("click", function() {
+        const buildingId = this.parentElement.getAttribute("data-id");
+        purchaseBuilding(buildingId);
+      });
+    });
+
+    // Production loop: Increase souls based on owned buildings every second
+    function productionTick() {
+      let totalProduction = 0;
+      for (let key in buildings) {
+        totalProduction += buildings[key].owned * buildings[key].production;
+      }
+      souls += totalProduction;
+      updateDisplay();
+    }
+
+    // Trigger a jumpscare event that grants bonus souls
+    function triggerJumpscare() {
+      let totalBuildings = 0;
+      for (let key in buildings) {
+        totalBuildings += buildings[key].owned;
+      }
+      if (totalBuildings === 0) {
+        alert("You need to own at least one building to scare humans!");
+        return;
+      }
+      // Generate a bonus between 50 and 150 souls per owned building
+      const bonusMultiplier = Math.floor(Math.random() * 100) + 50;
+      const bonus = bonusMultiplier * totalBuildings;
+      souls += bonus;
+      alert("Jumpscare successful! Humans trembled with fear—collecting " + bonus + " souls!");
+      updateDisplay();
+    }
+
+    // Event listener for the Jumpscare button
+    document.getElementById("jumpscareButton").addEventListener("click", triggerJumpscare);
+
+    // Load saved game state (if available) and update display
+    loadGame();
+    updateDisplay();
+
+    // Start the production loop (every 1 second)
+    setInterval(productionTick, 1000);
+    // Autosave game every 5 seconds
+    setInterval(saveGame, 5000);
+  </script>
+</body>
+</html>
