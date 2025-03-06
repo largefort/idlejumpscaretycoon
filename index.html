@@ -115,7 +115,7 @@
     <!-- New Reset Progress button -->
     <button id="resetButton">Reset Progress</button>
     <div id="buildings">
-      <!-- Haunted House -->
+      <!-- Existing Buildings -->
       <div class="building" data-id="hauntedHouse">
         <h3>Haunted House</h3>
         <p class="costLine">Cost: <span class="cost">10</span> Souls</p>
@@ -123,7 +123,6 @@
         <p class="productionLine">Production: <span class="production">1</span> Soul/s</p>
         <button class="buy">Buy</button>
       </div>
-      <!-- Cursed Mansion -->
       <div class="building" data-id="cursedMansion">
         <h3>Cursed Mansion</h3>
         <p class="costLine">Cost: <span class="cost">100</span> Souls</p>
@@ -131,7 +130,6 @@
         <p class="productionLine">Production: <span class="production">10</span> Soul/s</p>
         <button class="buy">Buy</button>
       </div>
-      <!-- Graveyard -->
       <div class="building" data-id="graveyard">
         <h3>Graveyard</h3>
         <p class="costLine">Cost: <span class="cost">1000</span> Souls</p>
@@ -139,7 +137,6 @@
         <p class="productionLine">Production: <span class="production">50</span> Soul/s</p>
         <button class="buy">Buy</button>
       </div>
-      <!-- Abandoned Asylum -->
       <div class="building" data-id="abandonedAsylum">
         <h3>Abandoned Asylum</h3>
         <p class="costLine">Cost: <span class="cost">5000</span> Souls</p>
@@ -147,12 +144,47 @@
         <p class="productionLine">Production: <span class="production">200</span> Soul/s</p>
         <button class="buy">Buy</button>
       </div>
-      <!-- Demonic Tower -->
       <div class="building" data-id="demonicTower">
         <h3>Demonic Tower</h3>
         <p class="costLine">Cost: <span class="cost">20000</span> Souls</p>
         <p class="ownedLine">Owned: <span class="owned">0</span></p>
         <p class="productionLine">Production: <span class="production">1000</span> Soul/s</p>
+        <button class="buy">Buy</button>
+      </div>
+      <!-- 5 New Buildings -->
+      <div class="building" data-id="sinisterCrypt">
+        <h3>Sinister Crypt</h3>
+        <p class="costLine">Cost: <span class="cost">50000</span> Souls</p>
+        <p class="ownedLine">Owned: <span class="owned">0</span></p>
+        <p class="productionLine">Production: <span class="production">2500</span> Soul/s</p>
+        <button class="buy">Buy</button>
+      </div>
+      <div class="building" data-id="phantomOpera">
+        <h3>Phantom Opera</h3>
+        <p class="costLine">Cost: <span class="cost">100000</span> Souls</p>
+        <p class="ownedLine">Owned: <span class="owned">0</span></p>
+        <p class="productionLine">Production: <span class="production">5000</span> Soul/s</p>
+        <button class="buy">Buy</button>
+      </div>
+      <div class="building" data-id="witchHut">
+        <h3>Witch's Hut</h3>
+        <p class="costLine">Cost: <span class="cost">250000</span> Souls</p>
+        <p class="ownedLine">Owned: <span class="owned">0</span></p>
+        <p class="productionLine">Production: <span class="production">10000</span> Soul/s</p>
+        <button class="buy">Buy</button>
+      </div>
+      <div class="building" data-id="spectralLabyrinth">
+        <h3>Spectral Labyrinth</h3>
+        <p class="costLine">Cost: <span class="cost">500000</span> Souls</p>
+        <p class="ownedLine">Owned: <span class="owned">0</span></p>
+        <p class="productionLine">Production: <span class="production">25000</span> Soul/s</p>
+        <button class="buy">Buy</button>
+      </div>
+      <div class="building" data-id="doomedCathedral">
+        <h3>Doomed Cathedral</h3>
+        <p class="costLine">Cost: <span class="cost">1000000</span> Souls</p>
+        <p class="ownedLine">Owned: <span class="owned">0</span></p>
+        <p class="productionLine">Production: <span class="production">50000</span> Soul/s</p>
         <button class="buy">Buy</button>
       </div>
     </div>
@@ -171,6 +203,11 @@
         graveyard: "Graveyard",
         abandonedAsylum: "Abandoned Asylum",
         demonicTower: "Demonic Tower",
+        sinisterCrypt: "Sinister Crypt",
+        phantomOpera: "Phantom Opera",
+        witchHut: "Witch's Hut",
+        spectralLabyrinth: "Spectral Labyrinth",
+        doomedCathedral: "Doomed Cathedral",
         cost: "Cost",
         owned: "Owned",
         production: "Production",
@@ -191,6 +228,11 @@
         graveyard: "Cementerio",
         abandonedAsylum: "Manicomio Abandonado",
         demonicTower: "Torre Demoníaca",
+        sinisterCrypt: "Cripta Siniestra",
+        phantomOpera: "Ópera Fantasma",
+        witchHut: "Cabaña de la Bruja",
+        spectralLabyrinth: "Laberinto Espectral",
+        doomedCathedral: "Catedral Condenada",
         cost: "Costo",
         owned: "Poseídas",
         production: "Producción",
@@ -213,7 +255,12 @@
       cursedMansion: { name: "Cursed Mansion", cost: 100, production: 10, owned: 0, costMultiplier: 1.15 },
       graveyard: { name: "Graveyard", cost: 1000, production: 50, owned: 0, costMultiplier: 1.15 },
       abandonedAsylum: { name: "Abandoned Asylum", cost: 5000, production: 200, owned: 0, costMultiplier: 1.15 },
-      demonicTower: { name: "Demonic Tower", cost: 20000, production: 1000, owned: 0, costMultiplier: 1.15 }
+      demonicTower: { name: "Demonic Tower", cost: 20000, production: 1000, owned: 0, costMultiplier: 1.15 },
+      sinisterCrypt: { name: "Sinister Crypt", cost: 50000, production: 2500, owned: 0, costMultiplier: 1.15 },
+      phantomOpera: { name: "Phantom Opera", cost: 100000, production: 5000, owned: 0, costMultiplier: 1.15 },
+      witchHut: { name: "Witch's Hut", cost: 250000, production: 10000, owned: 0, costMultiplier: 1.15 },
+      spectralLabyrinth: { name: "Spectral Labyrinth", cost: 500000, production: 25000, owned: 0, costMultiplier: 1.15 },
+      doomedCathedral: { name: "Doomed Cathedral", cost: 1000000, production: 50000, owned: 0, costMultiplier: 1.15 }
     };
 
     function saveGame() {
